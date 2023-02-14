@@ -1,0 +1,30 @@
+div{
+    border: 1px solid black;
+    box-sizing: border-box;
+    /* content + padding + boarder의 합으로 width / height 지정 */
+}
+
+.item{
+
+    width: 75px;
+    height: 75px;
+}
+
+.item1{background-color: red;}
+.item2{background-color: orange;}
+.item3{background-color: yellow;}
+.item4{background-color: greenyellow;}
+.item5{background-color: green;}
+.item6{background-color: lightblue;}
+.item7{background-color: blue;}
+.item8{background-color: plum;}
+.item9{background-color: violet;}
+.item10{background-color: red;}
+.item11{background-color: orange;}
+.item12{background-color: yellow;}
+.item13{background-color: greenyellow;}
+.item14{background-color: green;}
+.item15{background-color: lightblue;}
+.item16{background-color: blue;}
+.item17{background-color: plum;}
+.item18{background-color: violet;}
