@@ -27,7 +27,7 @@
     /* cross axis 방향 시작 지점으로 포장된 item들을 정렬 */
     align-content: flex-start;
 
-    /* cross axis 방향 시작 지점으로 포장된 item들을 정렬 */
+    /* cross axis 방향 끝 지점으로 포장된 item들을 정렬 */
     /* align-content: flex-end */
 
     /* cross axios 방향 가운데로 포장된 item들을 정렬 */
