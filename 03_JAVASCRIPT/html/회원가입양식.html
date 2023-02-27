@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입양식</title>
+    <style>
+      .right {
+        color: lightskyblue;
+      }
+      .wrong {
+        color: tomato;
+      }
+      button {
+        background-color: transparent;
+        border: 1px solid gray;
+        border-radius: 5px;
+        height: 30px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#">
+      <fieldset>
+        <legend><h3>회원가입</h3></legend>
+
+        <!-- 아이디 -->
+        <label>
+          아이디
+          <input
+            type="text"
+            id="id"
+            placeholder="영어소문자 + 숫자 5글자이상"
+            size="30"
+          /> </label
+        ><br />
+        <span id="idcheck"></span>
+        <br />
+        <!-- 비밀번호 -->
+        <label>
+          비밀번호
+          <input
+            type="password"
+            id="pw"
+            placeholder="영어대소문자 + 특수문자 + 숫자포함 8글자"
+            size="35"
+          /> </label
+        ><br />
+        <span id="pwcheck"></span>
+        <br />
+        <!-- 비밀번호 확인 -->
+        <label>
+          비밀번호 확인 <input type="password" id="pw2" size="35" /> </label
+        ><br />
+        <span id="pwcheck2"></span>
+        <br />
+        <!-- 이름 -->
+        <label
+          >이름
+          <input type="text" id="uname" placeholder="한글2글자이상" /></label
+        ><br />
+        <span id="namecheck"></span>
+        <br />
+        <!-- 휴대폰번호 -->
+        <label
+          >전화번호
+          <input
+            type="text"
+            id="phone"
+            placeholder="010으로시작 '-' 빼고" /></label
+        ><br />
+        <span id="phonecheck"></span>
+        <br />
+        <!-- 주민등록번호 -->
+        <label
+          >주민등록번호 <input type="text" id="idnum" /> -
+          <input type="password" id="idnum2" /></label
+        ><br />
+        <span id="idnumcheck"></span>
+        <br />
+        <!-- 이메일 -->
+        <label>이메일 <input type="email" id="email" /></label><br />
+        <span id="emailcheck"></span>
+        <br />
+      </fieldset>
+      <br />
+      <button>가입하기</button>
+    </form>
+
+    <script src="../js/회원가입양식.js"></script>
+  </body>
+</html>
