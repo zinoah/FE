@@ -75,10 +75,11 @@
         <br />
         <!-- 주민등록번호 -->
         <label
-          >주민등록번호 <input type="text" id="idnum" /> -
-          <input type="password" id="idnum2" /></label
+          >주민등록번호 <input type="text" id="idnum" maxlength="6" /> -
+          <input type="password" id="idnum2" maxlength="7" /></label
         ><br />
         <span id="idnumcheck"></span>
+
         <br />
         <!-- 이메일 -->
         <label>이메일 <input type="email" id="email" /></label><br />
@@ -86,7 +87,7 @@
         <br />
       </fieldset>
       <br />
-      <button>가입하기</button>
+      <button id="btn">가입하기</button>
     </form>
 
     <script src="../js/회원가입양식.js"></script>

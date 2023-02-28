@@ -97,6 +97,16 @@ phone.addEventListener("keyup", function () {
 // 주민번호 체크
 const idnum = document.getElementById("idnum");
 const idnum2 = document.getElementById("idnum2");
+idnum.addEventListener("keyup", function () {
+  const idnumcheck = document.getElementById("idnumcheck");
+  const regEx = /^[0-9]{1,6}$/;
+  if (!regEx.test(idnum.value)) {
+    idnumcheck.innerText = "잘못 입력하셨습니다.";
+    idnumcheck.classList.add("wrong");
+  } else {
+    idnumcheck.innerText = "";
+  }
+});
 
 // 이메일 체크
 const email = document.getElementById("email");
@@ -115,3 +125,7 @@ email.addEventListener("keyup", function () {
     emailcheck.classList.remove("right");
   }
 });
+
+// button submit
+const btn = document.getElementById("btn");
+btn.addEventListener("click", function () {});
