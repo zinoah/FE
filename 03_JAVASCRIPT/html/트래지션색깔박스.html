@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>트래지션 색깔박스</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        display: inline-block;
+      }
+      input {
+        width: 194px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="colorbox1" class="box"></div>
+    <div id="colorbox2" class="box"></div>
+    <div id="colorbox3" class="box"></div>
+    <div id="colorbox4" class="box"></div>
+    <div id="colorbox5" class="box"></div>
+    <br />
+    <input type="text" id="input1" class="input" />
+    <input type="text" id="input2" class="input" />
+    <input type="text" id="input3" class="input" />
+    <input type="text" id="input4" class="input" />
+    <input type="text" id="input5" class="input" />
+    <br />
+    <br />
+    <span>현재 transition-duration : </span>
+    <span id="duration-result">0초</span>
+    <br />
+    <br />
+    <label>
+      transition-duration 변경 : <input type="number" id="duration-input" />
+    </label>
+    <br />
+    <br />
+    <button id="resetbtn">초기화</button>
+    <script>
+      const durationinput = document.getElementById("duration-input");
+      const durationresult = document.getElementById("duration-result");
+      durationinput.addEventListener("keyup", function () {
+        durationresult.innerText = durationinput.value + "초";
+      });
+
+      const colorbox1 = document.getElementById("colorbox1");
+      const input1 = document.getElementById("input1");
+      input1.addEventListener("keyup", function () {
+        colorbox1.style.backgroundColor = input1.value;
+        input1.style.color = input1.value;
+        colorbox1.style.transitionDuration = durationinput.value + "s";
+      });
+
+      const colorbox2 = document.getElementById("colorbox2");
+      const input2 = document.getElementById("input2");
+      input2.addEventListener("keyup", function () {
+        colorbox2.style.backgroundColor = input2.value;
+        input2.style.color = input2.value;
+        colorbox2.style.transitionDuration = durationinput.value + "s";
+      });
+
+      const colorbox3 = document.getElementById("colorbox3");
+      const input3 = document.getElementById("input3");
+      input3.addEventListener("keyup", function () {
+        colorbox3.style.backgroundColor = input3.value;
+        input3.style.color = input3.value;
+        colorbox3.style.transitionDuration = durationinput.value + "s";
+      });
+
+      const colorbox4 = document.getElementById("colorbox4");
+      const input4 = document.getElementById("input4");
+      input4.addEventListener("keyup", function () {
+        colorbox4.style.backgroundColor = input4.value;
+        input4.style.color = input4.value;
+        colorbox4.style.transitionDuration = durationinput.value + "s";
+      });
+
+      const colorbox5 = document.getElementById("colorbox5");
+      const input5 = document.getElementById("input5");
+      input5.addEventListener("keyup", function () {
+        colorbox5.style.backgroundColor = input5.value;
+        input5.style.color = input5.value;
+        colorbox5.style.transitionDuration = durationinput.value + "s";
+      });
+
+      const resetbtn = document.getElementById("resetbtn");
+      resetbtn.addEventListener("click", function () {
+        const boxList = document.querySelectorAll(".box");
+        const inputList = document.querySelectorAll(".input");
+        for (let i = 0; i < boxList.length; i++) {
+          boxList[i].style.backgroundColor = null;
+          inputList[i].value = null;
+        }
+      });
+    </script>
+  </body>
+</html>
