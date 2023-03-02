@@ -4,99 +4,143 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>트래지션 색깔박스</title>
-    <style>
-      div {
-        width: 200px;
-        height: 200px;
-        border: 1px solid black;
-        display: inline-block;
-      }
-      input {
-        width: 194px;
-      }
-    </style>
+    <title>트래지션색깔박스</title>
   </head>
+
   <body>
-    <div id="colorbox1" class="box"></div>
-    <div id="colorbox2" class="box"></div>
-    <div id="colorbox3" class="box"></div>
-    <div id="colorbox4" class="box"></div>
-    <div id="colorbox5" class="box"></div>
-    <br />
-    <input type="text" id="input1" class="input" />
-    <input type="text" id="input2" class="input" />
-    <input type="text" id="input3" class="input" />
-    <input type="text" id="input4" class="input" />
-    <input type="text" id="input5" class="input" />
-    <br />
-    <br />
-    <span>현재 transition-duration : </span>
-    <span id="duration-result">0초</span>
-    <br />
-    <br />
-    <label>
-      transition-duration 변경 : <input type="number" id="duration-input" />
-    </label>
-    <br />
-    <br />
-    <button id="resetbtn">초기화</button>
+    <div class="container">
+      <div class="area">
+        <div class="box"></div>
+        <input type="text" class="box-color" />
+      </div>
+      <div class="area">
+        <div class="box"></div>
+        <input type="text" class="box-color" />
+      </div>
+      <div class="area">
+        <div class="box"></div>
+        <input type="text" class="box-color" />
+      </div>
+      <div class="area">
+        <div class="box"></div>
+        <input type="text" class="box-color" />
+      </div>
+      <div class="area">
+        <div class="box"></div>
+        <input type="text" class="box-color" />
+      </div>
+    </div>
+
+    <p>
+      현재 transition-duration : <span id="print1">0</span>초 <br /><br />
+
+      transition-duration 변경 :
+      <input type="number" id="input1" />
+      <button id="btn1">변경</button>
+
+      <br /><br />
+
+      <button id="clearBtn">초기화</button>
+    </p>
+
     <script>
-      const durationinput = document.getElementById("duration-input");
-      const durationresult = document.getElementById("duration-result");
-      durationinput.addEventListener("keyup", function () {
-        durationresult.innerText = durationinput.value + "초";
-      });
+      // 색 출력 영역
 
-      const colorbox1 = document.getElementById("colorbox1");
-      const input1 = document.getElementById("input1");
-      input1.addEventListener("keyup", function () {
-        colorbox1.style.backgroundColor = input1.value;
-        input1.style.color = input1.value;
-        colorbox1.style.transitionDuration = durationinput.value + "s";
-      });
+      // 요소를 얻어와서 변수에 저장
 
-      const colorbox2 = document.getElementById("colorbox2");
-      const input2 = document.getElementById("input2");
-      input2.addEventListener("keyup", function () {
-        colorbox2.style.backgroundColor = input2.value;
-        input2.style.color = input2.value;
-        colorbox2.style.transitionDuration = durationinput.value + "s";
-      });
+      // 클래스명, 태그명, name속성값, querySelectorAll() 같은 경우
+      // 요소를 얻어올 때 배열 형식으로 반환!!!!!!!!(제발 잊지 마세요)
+      const container = document.getElementsByClassName("container")[0];
 
-      const colorbox3 = document.getElementById("colorbox3");
-      const input3 = document.getElementById("input3");
-      input3.addEventListener("keyup", function () {
-        colorbox3.style.backgroundColor = input3.value;
-        input3.style.color = input3.value;
-        colorbox3.style.transitionDuration = durationinput.value + "s";
-      });
+      const area = document.getElementsByClassName("area");
+      const box = document.getElementsByClassName("box");
+      const boxColor = document.getElementsByClassName("box-color");
 
-      const colorbox4 = document.getElementById("colorbox4");
-      const input4 = document.getElementById("input4");
-      input4.addEventListener("keyup", function () {
-        colorbox4.style.backgroundColor = input4.value;
-        input4.style.color = input4.value;
-        colorbox4.style.transitionDuration = durationinput.value + "s";
-      });
+      // JS로 CSS 추가하기
 
-      const colorbox5 = document.getElementById("colorbox5");
-      const input5 = document.getElementById("input5");
-      input5.addEventListener("keyup", function () {
-        colorbox5.style.backgroundColor = input5.value;
-        input5.style.color = input5.value;
-        colorbox5.style.transitionDuration = durationinput.value + "s";
-      });
+      // container 클래스 요소에 display : flex 추가
+      container.style.display = "flex";
 
-      const resetbtn = document.getElementById("resetbtn");
-      resetbtn.addEventListener("click", function () {
-        const boxList = document.querySelectorAll(".box");
-        const inputList = document.querySelectorAll(".input");
-        for (let i = 0; i < boxList.length; i++) {
-          boxList[i].style.backgroundColor = null;
-          inputList[i].value = null;
+      // area 클래스 요소에
+      // 높이 170px, 너비 150px, 테두리 1px 검정색 실선
+      // display : flex, main-axis 방향 : 열(세로)
+
+      // 일반for문 || for of
+      for (let item of area) {
+        // item == area 배열에 담긴 요소를 순차적으로 하나씩 꺼내 저장하는 변수
+        item.style.height = "170px";
+        item.style.width = "150px";
+        item.style.border = "1px solid black";
+        item.style.display = "flex";
+        item.style.flexDirection = "column";
+      }
+
+      // box 클래스 요소에 높이 150px, 아랫쪽 테두리 1px 실선 검정색
+      for (let item of box) {
+        item.style.height = "150px";
+        item.style.borderBottom = "1px solid black";
+      }
+
+      // box-color 클래스 요소의 테두리와 outline을 없애기
+      for (let item of boxColor) {
+        item.style.border = "none";
+        item.style.outline = "none";
+      }
+
+      // box-color 클래스 요소의 입력된 값이 변했을 때
+      // 위에있는 box 클래스 요소의 배경색을 변경
+      // + 입력된 input요소 글씨색도 변경
+      for (let i = 0; i < boxColor.length; i++) {
+        // change : 포커스를 잃고나서 또는 엔터 입력 시
+        //          작성된 값이 이전 값과 다를 경우
+
+        // blur : 포커스를 잃었을 때
+        boxColor[i].addEventListener("change", function () {
+          //console.log(this.value);
+
+          // box-color input태그와 같은 인덱스 번째 box 요소 배경색 변경
+          box[i].style.backgroundColor = this.value;
+
+          //boxColor[i].style.color = this.value; // 글자색 변경
+          this.style.color = this.value; // 글자색 변경
+        });
+      }
+
+      // transition-duration 변경 버튼 클릭 시
+      // #input1에 작성된 값 만큼의 transition-duration을
+      // 모든 box 요소에 추가
+      // + #print1 요소의 내용을 #input1에 작성된 값으로 변경
+
+      // hint.  transition-duration에 세팅되는 값은 초단위(s) 입니다.
+
+      document.getElementById("btn1").addEventListener("click", function () {
+        const duration = document.getElementById("input1").value; // #input1 값
+        for (let item of box) {
+          // box 배열에 담긴 요소를 하나씩 꺼내 item에 저장
+          item.style.transitionDuration = duration + "s";
         }
+
+        // #print1 요소의 내용을 #input1에 작성된 값으로 변경
+        document.getElementById("print1").innerText = duration;
       });
+
+      // #clearBtn 클릭 시
+      // .box의 모든 배경색을 없애고
+      // .box-color에 작성된 값도 없애기
+
+      document
+        .getElementById("clearBtn")
+        .addEventListener("click", function () {
+          for (let item of box) {
+            // .box 배경색 삭제
+            item.style.backgroundColor = "";
+          }
+
+          for (let item of boxColor) {
+            // .box-color 값 삭제
+            item.value = "";
+          }
+        });
     </script>
   </body>
 </html>

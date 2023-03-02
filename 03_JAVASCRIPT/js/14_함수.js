@@ -35,7 +35,6 @@ document.getElementById("btn2").addEventListener("click", (e) => {
   // e.target : 이벤트가 발생한 대상(요소)
   console.log(e.target);
   e.target.style.backgroundColor = "yellow";
-
   //****** [화살표 함수 주의 사항] ******//
   // -> 화살표 함수를 이벤트 핸들러로 사용할 경우
   // this는 window객체를 나타내게 된다.
