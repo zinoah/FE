@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입양식2</title>
+    <style>
+      fieldset {
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="main.html" method="get">
+      <fieldset>
+        <legend>회원 가입 양식</legend>
+        <table>
+          <tr>
+            <td class="userid">아이디</td>
+            <td><input type="text" id="idinput" /></td>
+            <td><button id="idcheckbtn">중복확인</button></td>
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td><input type="password" id="pw" /></td>
+            <td><span id="pwcheck"></span></td>
+          </tr>
+          <tr>
+            <td>비밀번호 확인</td>
+            <td><input type="password" id="pw2" /></td>
+          </tr>
+          <tr>
+            <td>이름</td>
+            <td><input type="text" id="nameinput" /></td>
+            <td><span id="namecheck"></span></td>
+          </tr>
+          <tr>
+            <td>성별</td>
+            <td>
+              <label for="man">남</label
+              ><input type="radio" id="man" name="gender" />
+              <label for="woman">여</label
+              ><input type="radio" id="woman" name="gender" />
+            </td>
+          </tr>
+          <tr>
+            <td>전화번호</td>
+            <td><input type="text" id="inputPhone" /></td>
+          </tr>
+          <tr>
+            <td>이메일</td>
+            <td><input type="email" /></td>
+          </tr>
+        </table>
+        <button id="reset" type="reset">초기화</button>
+        <button id="onsubmit" onclick="validate()">회원가입</button>
+      </fieldset>
+    </form>
+
+    <script>
+      /*<form> 이용해서 할 것 !!
+         * action 은 main.html
+         * method는 get
+         * onsubmit 에 validate() 함수 연결
+         * validate() 에서는 성별, 전화번호 유효성검사 진행 (아래 4번 계속)
+
+         1. 아이디 : 이벤트 (값이 변했을 때)
+         - 영어 소문자로 시작하고, 영어 대/소문자, 숫자, - , _ 로만 이루어진 6~14 글자 사이 문자열인지 검사
+         - 형식이 일치할 경우, 입력창의 배경색을 springgreen 으로 변경
+         - 형식이 일치하지 않은 경우 입력창의 배경색을 red, 글자색을 white 로 변경
+         */
+      const idinput = document.getElementById("idinput");
+      idinput.addEventListener("keyup", function () {
+        const regEx = /^[a-z][A-Za-z0-9-,_]{5,13}$/;
+        if (regEx.test(idinput.value)) {
+          idinput.style.backgroundColor = "springgreen";
+        } else {
+          idinput.style.backgroundColor = "red";
+          idinput.style.color = "white";
+        }
+      });
+
+      /*
+         2. 비밀번호/ 비밀번호 확인 (키보드가 올라올 때)
+         - 정규식 따로 없음
+         - 비밀번호 / 비밀번호 확인 값이 동일할 때 "비밀번호" 입력창 오른쪽에 "비밀번호 일치" 글자를 초록색으로 출력.
+         - 일치하지 않을 경우 "비밀번호" 입력창 오른쪽에 "비밀번호가 불일치" 글자를 빨간색으로 출력
+       */
+      const pw = document.getElementById("pw");
+      const pw2 = document.getElementById("pw2");
+      const pwcheck = document.getElementById("pwcheck");
+
+      pw2.addEventListener("keyup", function () {
+        if (pw.value == pw2.value) {
+          pwcheck.style.color = "green";
+          pwcheck.innerText = "비밀번호 일치";
+        } else {
+          pwcheck.style.color = "red";
+          pwcheck.innerText = "비밀번호 불일치";
+        }
+      });
+
+      /*
+         3. 이름 (값이 변했을 때)
+         - 한글 2~5 글자 사이 문자열인지 검사.
+         - 형식이 일치할 경우 "이름" 입력창 오른쪽에 "정상입력" 글자를 초록색으로 출력.
+         - 형식이 일치할 경우 "이름" 입력창 오른쪽에 "한글만 입력하세요" 글자를 빨간색으로 출력.
+      */
+      const nameinput = document.getElementById("nameinput");
+      const namecheck = document.getElementById("namecheck");
+      nameinput.addEventListener("keyup", function () {
+        const regEx = /^[ㄱ-힣]{2,5}$/;
+        if (regEx.test(nameinput.value)) {
+          namecheck.style.color = "green";
+          namecheck.innerText = "정상입력";
+        } else {
+          namecheck.style.color = "red";
+          namecheck.innerText = "한글만 입력하세요";
+        }
+      });
+      /*
+         4. 회원가입 버튼 클릭 시 : validate() 함수를 호출
+         - 성별 미 선택 시 "성별을 선택해주세요." 경고창(==대화상자) 출력 (출력 후 다음 경고창 뜨지 않도록)
+         - 전화번호 형식이 올바르지 않을 경우 "전화번호의 형식이 올바르지 않습니다" 경고창(==대화상자) 출력 (출력 후 다음 경고창 뜨지 않도록)
+         - 전화번호 형식
+         : 0으로 시작, (02/010) 가능하도록 0뒤에 1~2글자 가능. 가운데 번호 3~4글자, 마지막번호 4글자 하이픈 넣기
+         ex) 02-985-1010 (O)
+         ex) 010-1111-1111(O)
+         ex) 11-2050-1111 (X)
+         ex) 01011111111(X)*/
+      function validate() {
+        const gender = document.getElementsByName("gender");
+        const checked = false;
+
+        const inputPhone = document.getElementById("inputPhone");
+        const regEx = /^0[0-9]{1,2}-[0-9]{3,4}-[0-9]{3,4}/;
+
+        for (let i = 0; i < gender.length; i++) {
+          if (gender[i].checked) {
+            checked = true;
+            break;
+          }
+        }
+
+        if (!checked) {
+          alert("성별을 선택해주세요");
+        }
+        if (!regEx.test(inputPhone.value)) {
+          alert("전화번호의 형식이 올바르지 않습니다");
+        }
+      }
+    </script>
+  </body>
+</html>
